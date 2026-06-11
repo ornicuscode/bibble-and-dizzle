@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bibble & Dizzle</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Georgia, serif;
+      background: linear-gradient(135deg, #fff0f5, #ffe4e1);
+      color: #4a2c2a;
+      text-align: center;
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 60px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 32px;
+    }
+
+    p {
+      max-width: 650px;
+      font-size: 20px;
+      line-height: 1.7;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 30px;
+      background: #ff7aa2;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      max-width: 700px;
+    }
+
+    .heart {
+      font-size: 60px;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <section>
+    <div class="heart">❤️</div>
+    <h1>Bibble & Dizzle</h1>
+    <p>Chapter One: 365 Days Together</p>
+    <button onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">
+      Open Our Story
+    </button>
+  </section>
+
+  <section id="story">
+    <div class="card">
+      <h2>Happy 1st Anniversary</h2>
+      <p>
+        One year ago, our story started in a way we probably never expected.
+        Since then, every little moment, every laugh, every silly memory,
+        and every ordinary day became special because it was with you.
+      </p>
+      <p>
+        Thank you for being my favorite person, my safe place,
+        and the best part of my everyday life.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <h2>To Be Continued...</h2>
+      <p>
+        This is only the beginning of Bibble & Dizzle.
+        Year 2 starts now ❤️
+      </p>
+    </div>
+  </section>
+
+</body>
+</html>
