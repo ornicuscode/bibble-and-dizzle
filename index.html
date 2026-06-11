@@ -16,6 +16,7 @@
       background: #fff7f2;
       color: #4a2c2a;
       text-align: center;
+      overflow-x: hidden;
     }
 
     section {
@@ -57,12 +58,18 @@
       font-size: 17px;
       cursor: pointer;
       box-shadow: 0 10px 25px rgba(255, 122, 162, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(255, 122, 162, 0.45);
     }
 
     .hero {
       min-height: 100vh;
       background:
-        linear-gradient(rgba(80,30,40,0.45), rgba(80,30,40,0.45)),
+        linear-gradient(rgba(80,30,40,0.48), rgba(80,30,40,0.48)),
         url("images/cover.jpg");
       background-size: cover;
       background-position: center;
@@ -71,12 +78,19 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      text-shadow: 0 3px 18px rgba(0,0,0,0.35);
       padding: 50px 20px;
     }
 
     .hero p {
       font-size: 23px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
+    }
+
+    .hero-note {
+      font-size: 15px !important;
+      opacity: 0.9;
+      margin-top: -8px;
     }
 
     .card {
@@ -157,58 +171,77 @@
 
     .love-message {
       background: white;
-      max-width: 760px;
+      max-width: 780px;
       margin: 0 auto;
-      padding: 36px;
-      border-radius: 26px;
+      padding: 40px;
+      border-radius: 28px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+    }
+
+    .love-message .big-word {
+      font-size: 42px;
+      color: #d45d79;
+      margin-bottom: 10px;
     }
 
     .love-message p {
       margin-left: auto;
       margin-right: auto;
       font-size: 20px;
+      line-height: 1.9;
+    }
+
+    .letter-section {
+      background: #f7e7dc;
     }
 
     .letter {
-      max-width: 760px;
+      max-width: 800px;
       margin: 0 auto;
       background: #fffdf9;
-      padding: 42px;
-      border-radius: 28px;
+      padding: 44px;
+      border-radius: 30px;
       box-shadow: 0 14px 40px rgba(80, 40, 40, 0.12);
       text-align: left;
     }
 
     .letter p {
       max-width: 100%;
+      font-size: 19px;
+      line-height: 1.9;
     }
 
     .ending {
-      min-height: 70vh;
+      min-height: 75vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       background: #fff0f3;
+      position: relative;
     }
 
-    .floating-heart {
+    .ending p {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .floating-surprise {
       position: fixed;
-      bottom: -20px;
-      font-size: 28px;
-      animation: floatUp 4s linear forwards;
+      bottom: -30px;
+      animation: floatUp 4.5s linear forwards;
       z-index: 999;
       pointer-events: none;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.12);
     }
 
     @keyframes floatUp {
-      from {
-        transform: translateY(0);
+      0% {
+        transform: translateY(0) rotate(0deg);
         opacity: 1;
       }
-      to {
-        transform: translateY(-110vh);
+      100% {
+        transform: translateY(-115vh) rotate(25deg);
         opacity: 0;
       }
     }
@@ -226,8 +259,16 @@
         font-size: 30px;
       }
 
+      h3 {
+        font-size: 23px;
+      }
+
       p {
         font-size: 17px;
+      }
+
+      .hero p {
+        font-size: 19px;
       }
 
       .timeline-card {
@@ -249,6 +290,14 @@
         height: 180px;
       }
 
+      .love-message {
+        padding: 30px;
+      }
+
+      .love-message .big-word {
+        font-size: 36px;
+      }
+
       .letter {
         padding: 30px;
         text-align: center;
@@ -259,13 +308,10 @@
 
 <body>
 
-  <audio id="song" loop>
-    <source src="music/our-song.mp3" type="audio/mpeg">
-  </audio>
-
   <section class="hero">
     <h1>Bibble & Dizzle</h1>
     <p>Chapter One: 365 Days Together</p>
+    <p class="hero-note">Play our song first, then open our story ❤️</p>
     <button onclick="startStory()">Open Our Story ❤️</button>
   </section>
 
@@ -301,7 +347,7 @@
       <div class="timeline-card">
         <img src="images/photo2.jpg" alt="The Continue">
         <div>
-          <span>8 May 2025 · After The first Date</span>
+          <span>After The First Date</span>
           <h3>The Continue</h3>
           <p>
             After our first date, things were not perfect.
@@ -316,7 +362,7 @@
       <div class="timeline-card">
         <img src="images/photo3.jpg" alt="Our First Adventure">
         <div>
-          <span>15 June 2025 · A New Chapter</span>
+          <span>A New Chapter</span>
           <h3>Our First Adventure</h3>
           <p>
             Then came our first adventure.
@@ -408,29 +454,47 @@
     <h2>Things I Love About You</h2>
 
     <div class="love-message">
+      <div class="big-word">Everything.</div>
       <p>
-        Everything.
-        I just love you for who you are.
-        If I were to write every single thing I love about you,
-        the list would go to the end of the world.
+        I love the way you are, exactly as you are.
+        I love your soft side, your silly side, your little habits,
+        your smile, your laugh, your heart, and all the tiny details
+        that make you you.
+      </p>
+      <p>
+        I could try to write down every single thing I love about you,
+        but the list would never really end.
+        It would go to the end of the world,
+        and even then, I would probably still have more to say.
       </p>
     </div>
   </section>
 
-  <section>
+  <section class="letter-section">
     <div class="letter">
       <h2>Dear Dizzle,</h2>
       <p>
-        One year with you has meant more to me than I can fully explain.
-        Thank you for being my comfort, my happiness, and my favorite person.
+        One year with you has meant more to me than I can ever fully explain.
+        Somehow, you became more than just someone I love.
+        You became my comfort, my softness, my favorite part of ordinary days,
+        and the person I want to share all the little moments with.
       </p>
       <p>
-        I love every little version of us. The sweet moments, the silly moments,
-        the quiet days, and even the difficult ones. I am grateful that I got to
-        spend this first year with you.
+        I love the version of us that laughs at random things.
+        I love the version of us that stays up talking.
+        I love the version of us that is silly, soft, stubborn, honest,
+        and still learning how to love each other better every day.
       </p>
       <p>
-        I hope this is only the beginning of many more memories together.
+        Thank you for choosing me, for staying, for continuing,
+        and for becoming such a beautiful part of my life.
+        I am so grateful that our story did not end at the beginning,
+        because every chapter after that has become something I want to keep forever.
+      </p>
+      <p>
+        Happy first anniversary, Dizzle.
+        I love you more than this little website could ever hold.
+        And I hope this is only the beginning of many more years of Bibble & Dizzle.
       </p>
       <p>
         Love,<br>
@@ -442,38 +506,35 @@
   <section class="ending">
     <h2>Thank You For The Best First Year</h2>
     <p>Year 2 starts now.</p>
-    <button onclick="showHearts()">One Last Surprise ❤️</button>
+    <button onclick="showSurprise()">One Last Surprise ❤️🌸</button>
   </section>
 
   <script>
     function startStory() {
-      const song = document.getElementById("song");
-
-      if (song) {
-        song.play().catch(() => {});
-      }
-
       window.scrollTo({
         top: window.innerHeight,
         behavior: "smooth"
       });
     }
 
-    function showHearts() {
-      for (let i = 0; i < 30; i++) {
-        setTimeout(() => {
-          const heart = document.createElement("div");
-          heart.className = "floating-heart";
-          heart.innerHTML = "❤️";
-          heart.style.left = Math.random() * 100 + "vw";
-          heart.style.fontSize = Math.random() * 18 + 20 + "px";
+    function showSurprise() {
+      const items = ["❤️", "💖", "💕", "🌸", "🌹", "🌷", "✨", "💐"];
 
-          document.body.appendChild(heart);
+      for (let i = 0; i < 90; i++) {
+        setTimeout(() => {
+          const item = document.createElement("div");
+          item.className = "floating-surprise";
+          item.innerHTML = items[Math.floor(Math.random() * items.length)];
+          item.style.left = Math.random() * 100 + "vw";
+          item.style.fontSize = Math.random() * 24 + 20 + "px";
+          item.style.animationDuration = (Math.random() * 2 + 3.5) + "s";
+
+          document.body.appendChild(item);
 
           setTimeout(() => {
-            heart.remove();
-          }, 4000);
-        }, i * 120);
+            item.remove();
+          }, 6000);
+        }, i * 45);
       }
     }
   </script>
