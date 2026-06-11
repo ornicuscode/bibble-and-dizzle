@@ -268,31 +268,47 @@
     }
 
     .gallery {
-      max-width: 1050px;
+      max-width: 1080px;
       margin: 35px auto 0;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
       gap: 16px;
+      perspective: 1000px;
     }
 
     .gallery img {
       width: 100%;
-      height: 220px;
+      height: 215px;
       object-fit: cover;
       border-radius: 20px;
       display: block;
       box-shadow: 0 8px 22px rgba(0,0,0,0.10);
       opacity: 0;
-      transform: translateY(20px) scale(0.96);
       transition:
-        opacity 0.7s ease,
-        transform 0.7s ease,
+        opacity 0.85s ease,
+        transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
         box-shadow 0.25s ease;
     }
 
+    .gallery img:nth-child(1) { transform: translate(-80px, 35px) rotate(-5deg) scale(0.9); }
+    .gallery img:nth-child(2) { transform: translate(70px, 30px) rotate(4deg) scale(0.9); }
+    .gallery img:nth-child(3) { transform: translate(0, 70px) rotate(-3deg) scale(0.9); }
+    .gallery img:nth-child(4) { transform: translate(-65px, -20px) rotate(5deg) scale(0.9); }
+    .gallery img:nth-child(5) { transform: translate(75px, -15px) rotate(-4deg) scale(0.9); }
+    .gallery img:nth-child(6) { transform: translate(0, 80px) rotate(3deg) scale(0.9); }
+    .gallery img:nth-child(7) { transform: translate(-85px, 25px) rotate(4deg) scale(0.9); }
+    .gallery img:nth-child(8) { transform: translate(85px, 25px) rotate(-5deg) scale(0.9); }
+    .gallery img:nth-child(9) { transform: translate(0, 75px) rotate(4deg) scale(0.9); }
+    .gallery img:nth-child(10) { transform: translate(-70px, 20px) rotate(-4deg) scale(0.9); }
+    .gallery img:nth-child(11) { transform: translate(70px, 20px) rotate(5deg) scale(0.9); }
+    .gallery img:nth-child(12) { transform: translate(0, 80px) rotate(-3deg) scale(0.9); }
+    .gallery img:nth-child(13) { transform: translate(-75px, 35px) rotate(3deg) scale(0.9); }
+    .gallery img:nth-child(14) { transform: translate(75px, 35px) rotate(-4deg) scale(0.9); }
+    .gallery img:nth-child(15) { transform: translate(0, 85px) rotate(4deg) scale(0.9); }
+
     .gallery img.active {
       opacity: 1;
-      transform: translateY(0) scale(1);
+      transform: translate(0, 0) rotate(0deg) scale(1);
     }
 
     .gallery img:hover {
@@ -383,9 +399,23 @@
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
-    .reveal.active {
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-90px) translateY(20px) scale(0.96);
+      transition: opacity 0.85s ease, transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(90px) translateY(20px) scale(0.96);
+      transition: opacity 0.85s ease, transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.active,
+    .reveal-left.active,
+    .reveal-right.active {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateX(0) translateY(0) scale(1);
     }
 
     @media (max-width: 700px) {
@@ -435,6 +465,11 @@
         height: 260px;
       }
 
+      .reveal-left,
+      .reveal-right {
+        transform: translateY(45px) scale(0.96);
+      }
+
       .gallery {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
@@ -442,6 +477,14 @@
 
       .gallery img {
         height: 180px;
+      }
+
+      .gallery img:nth-child(n) {
+        transform: translateY(45px) scale(0.92) rotate(0deg);
+      }
+
+      .gallery img.active {
+        transform: translateY(0) scale(1) rotate(0deg);
       }
 
       .love-message {
@@ -522,7 +565,7 @@
 
     <div class="timeline">
 
-      <div class="timeline-card reveal">
+      <div class="timeline-card reveal-left">
         <img src="images/photo1.jpg" alt="The Beginning">
         <div>
           <span>23 March 2025 · Contento</span>
@@ -535,7 +578,7 @@
         </div>
       </div>
 
-      <div class="timeline-card reveal">
+      <div class="timeline-card reveal-right">
         <img src="images/photo2.jpg" alt="The Continue">
         <div>
           <span>After The First Date</span>
@@ -550,7 +593,7 @@
         </div>
       </div>
 
-      <div class="timeline-card reveal">
+      <div class="timeline-card reveal-left">
         <img src="images/photo3.jpg" alt="Our First Adventure">
         <div>
           <span>A New Chapter</span>
@@ -564,7 +607,7 @@
         </div>
       </div>
 
-      <div class="timeline-card reveal">
+      <div class="timeline-card reveal-right">
         <img src="images/photo4.jpg" alt="Favorite Moment">
         <div>
           <span>A Memory I Love</span>
@@ -577,7 +620,7 @@
         </div>
       </div>
 
-      <div class="timeline-card reveal">
+      <div class="timeline-card reveal-left">
         <img src="images/photo5.jpg" alt="The Little Us">
         <div>
           <span>The Little Moments</span>
@@ -590,7 +633,7 @@
         </div>
       </div>
 
-      <div class="timeline-card reveal">
+      <div class="timeline-card reveal-right">
         <img src="images/photo6.jpg" alt="The Soft Spot">
         <div>
           <span>Somewhere Along The Way</span>
@@ -603,7 +646,7 @@
         </div>
       </div>
 
-      <div class="timeline-card reveal">
+      <div class="timeline-card reveal-left">
         <img src="images/photo7.jpg" alt="One Year Later">
         <div>
           <span>365 Days Later</span>
@@ -638,6 +681,9 @@
       <img src="images/gallery10.jpg" alt="Memory 10">
       <img src="images/gallery11.jpg" alt="Memory 11">
       <img src="images/gallery12.jpg" alt="Memory 12">
+      <img src="images/gallery13.jpg" alt="Memory 13">
+      <img src="images/gallery14.jpg" alt="Memory 14">
+      <img src="images/gallery15.jpg" alt="Memory 15">
     </div>
   </section>
 
@@ -778,7 +824,7 @@
     }
 
     function revealOnScroll() {
-      const revealElements = document.querySelectorAll(".reveal");
+      const revealElements = document.querySelectorAll(".reveal, .reveal-left, .reveal-right");
       const galleryImages = document.querySelectorAll(".gallery img");
 
       revealElements.forEach((element) => {
@@ -799,7 +845,7 @@
         if (imageTop < windowHeight - revealPoint) {
           setTimeout(() => {
             image.classList.add("active");
-          }, index * 75);
+          }, index * 70);
         }
       });
     }
