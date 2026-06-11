@@ -10,6 +10,10 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: Georgia, "Times New Roman", serif;
@@ -80,6 +84,48 @@
       justify-content: center;
       text-shadow: 0 3px 18px rgba(0,0,0,0.35);
       padding: 50px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      background: rgba(255, 255, 255, 0.14);
+      border-radius: 50%;
+      top: 12%;
+      left: -80px;
+      filter: blur(2px);
+      animation: softFloat 8s ease-in-out infinite;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      background: rgba(255, 122, 162, 0.18);
+      border-radius: 50%;
+      bottom: 10%;
+      right: -70px;
+      filter: blur(2px);
+      animation: softFloat 9s ease-in-out infinite reverse;
+    }
+
+    @keyframes softFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-24px);
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
     }
 
     .hero p {
@@ -107,6 +153,49 @@
       margin-right: auto;
     }
 
+    .counter-section {
+      background: #fff0f3;
+    }
+
+    .love-counter {
+      max-width: 900px;
+      margin: 30px auto 0;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+    }
+
+    .love-counter div {
+      background: white;
+      padding: 22px 10px;
+      border-radius: 22px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .love-counter div:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+    }
+
+    .love-counter span {
+      display: block;
+      font-size: 34px;
+      font-weight: bold;
+      color: #d45d79;
+    }
+
+    .love-counter p {
+      margin: 6px 0 0;
+      font-size: 14px;
+      max-width: none;
+    }
+
+    .counter-note {
+      margin: 24px auto 0;
+      font-size: 18px;
+    }
+
     .timeline {
       width: 100%;
       max-width: 920px;
@@ -114,6 +203,19 @@
       display: flex;
       flex-direction: column;
       gap: 24px;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 105px;
+      top: 10px;
+      bottom: 10px;
+      width: 2px;
+      background: linear-gradient(#ffb6c8, #d45d79, #ffb6c8);
+      opacity: 0.35;
+      z-index: 0;
     }
 
     .timeline-card {
@@ -126,6 +228,14 @@
       align-items: center;
       text-align: left;
       box-shadow: 0 10px 28px rgba(0,0,0,0.10);
+      position: relative;
+      z-index: 1;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .timeline-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.14);
     }
 
     .timeline-card img {
@@ -134,6 +244,11 @@
       object-fit: cover;
       border-radius: 20px;
       display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .timeline-card:hover img {
+      transform: scale(1.03);
     }
 
     .timeline-card span {
@@ -167,6 +282,22 @@
       border-radius: 20px;
       display: block;
       box-shadow: 0 8px 22px rgba(0,0,0,0.10);
+      opacity: 0;
+      transform: translateY(20px) scale(0.96);
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .gallery img.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .gallery img:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 14px 32px rgba(0,0,0,0.16);
     }
 
     .love-message {
@@ -246,6 +377,17 @@
       }
     }
 
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     @media (max-width: 700px) {
       section {
         padding: 65px 18px;
@@ -269,6 +411,18 @@
 
       .hero p {
         font-size: 19px;
+      }
+
+      .love-counter {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .love-counter span {
+        font-size: 30px;
+      }
+
+      .timeline::before {
+        display: none;
       }
 
       .timeline-card {
@@ -309,14 +463,51 @@
 <body>
 
   <section class="hero">
-    <h1>Bibble & Dizzle</h1>
-    <p>Chapter One: 365 Days Together</p>
-    <p class="hero-note">Play our song first, then open our story ❤️</p>
-    <button onclick="startStory()">Open Our Story ❤️</button>
+    <div class="hero-content reveal">
+      <h1>Bibble & Dizzle</h1>
+      <p>Chapter One: 365 Days Together</p>
+      <p class="hero-note">Play our song first, then open our story ❤️</p>
+      <button onclick="startStory()">Open Our Story ❤️</button>
+    </div>
+  </section>
+
+  <section class="counter-section">
+    <h2 class="reveal">How Long We Have Been Together</h2>
+
+    <div class="love-counter reveal">
+      <div>
+        <span id="years">0</span>
+        <p>Years</p>
+      </div>
+      <div>
+        <span id="months">0</span>
+        <p>Months</p>
+      </div>
+      <div>
+        <span id="days">0</span>
+        <p>Days</p>
+      </div>
+      <div>
+        <span id="hours">0</span>
+        <p>Hours</p>
+      </div>
+      <div>
+        <span id="minutes">0</span>
+        <p>Minutes</p>
+      </div>
+      <div>
+        <span id="seconds">0</span>
+        <p>Seconds</p>
+      </div>
+    </div>
+
+    <p class="counter-note reveal">
+      Since 15 June 2025, the day Bibble & Dizzle officially began ❤️
+    </p>
   </section>
 
   <section>
-    <div class="card">
+    <div class="card reveal">
       <h2>A Little Place For Our Memories</h2>
       <p>
         This is not just a website. It is a small corner of the internet
@@ -327,11 +518,11 @@
   </section>
 
   <section>
-    <h2>Our Timeline</h2>
+    <h2 class="reveal">Our Timeline</h2>
 
     <div class="timeline">
 
-      <div class="timeline-card">
+      <div class="timeline-card reveal">
         <img src="images/photo1.jpg" alt="The Beginning">
         <div>
           <span>23 March 2025 · Contento</span>
@@ -344,7 +535,7 @@
         </div>
       </div>
 
-      <div class="timeline-card">
+      <div class="timeline-card reveal">
         <img src="images/photo2.jpg" alt="The Continue">
         <div>
           <span>After The First Date</span>
@@ -359,7 +550,7 @@
         </div>
       </div>
 
-      <div class="timeline-card">
+      <div class="timeline-card reveal">
         <img src="images/photo3.jpg" alt="Our First Adventure">
         <div>
           <span>A New Chapter</span>
@@ -373,7 +564,7 @@
         </div>
       </div>
 
-      <div class="timeline-card">
+      <div class="timeline-card reveal">
         <img src="images/photo4.jpg" alt="Favorite Moment">
         <div>
           <span>A Memory I Love</span>
@@ -386,7 +577,7 @@
         </div>
       </div>
 
-      <div class="timeline-card">
+      <div class="timeline-card reveal">
         <img src="images/photo5.jpg" alt="The Little Us">
         <div>
           <span>The Little Moments</span>
@@ -399,7 +590,7 @@
         </div>
       </div>
 
-      <div class="timeline-card">
+      <div class="timeline-card reveal">
         <img src="images/photo6.jpg" alt="The Soft Spot">
         <div>
           <span>Somewhere Along The Way</span>
@@ -412,7 +603,7 @@
         </div>
       </div>
 
-      <div class="timeline-card">
+      <div class="timeline-card reveal">
         <img src="images/photo7.jpg" alt="One Year Later">
         <div>
           <span>365 Days Later</span>
@@ -429,8 +620,8 @@
   </section>
 
   <section>
-    <h2>Memory Gallery</h2>
-    <p style="margin-left: auto; margin-right: auto;">
+    <h2 class="reveal">Memory Gallery</h2>
+    <p class="reveal" style="margin-left: auto; margin-right: auto;">
       A collection of our little moments.
     </p>
 
@@ -451,9 +642,9 @@
   </section>
 
   <section>
-    <h2>Things I Love About You</h2>
+    <h2 class="reveal">Things I Love About You</h2>
 
-    <div class="love-message">
+    <div class="love-message reveal">
       <div class="big-word">Everything.</div>
       <p>
         I love the way you are, exactly as you are.
@@ -471,7 +662,7 @@
   </section>
 
   <section class="letter-section">
-    <div class="letter">
+    <div class="letter reveal">
       <h2>Dear Dizzle,</h2>
       <p>
         One year with you has meant more to me than I can ever fully explain.
@@ -504,12 +695,60 @@
   </section>
 
   <section class="ending">
-    <h2>Thank You For The Best First Year</h2>
-    <p>Year 2 starts now.</p>
+    <h2 class="reveal">Thank You For The Best First Year</h2>
+    <p class="reveal">Year 2 starts now.</p>
     <button onclick="showSurprise()">One Last Surprise ❤️🌸</button>
   </section>
 
   <script>
+    function updateLoveCounter() {
+      const startDate = new Date("2025-06-15T00:00:00+07:00");
+      const now = new Date();
+
+      let years = now.getFullYear() - startDate.getFullYear();
+      let months = now.getMonth() - startDate.getMonth();
+      let days = now.getDate() - startDate.getDate();
+      let hours = now.getHours() - startDate.getHours();
+      let minutes = now.getMinutes() - startDate.getMinutes();
+      let seconds = now.getSeconds() - startDate.getSeconds();
+
+      if (seconds < 0) {
+        seconds += 60;
+        minutes--;
+      }
+
+      if (minutes < 0) {
+        minutes += 60;
+        hours--;
+      }
+
+      if (hours < 0) {
+        hours += 24;
+        days--;
+      }
+
+      if (days < 0) {
+        const previousMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += previousMonth.getDate();
+        months--;
+      }
+
+      if (months < 0) {
+        months += 12;
+        years--;
+      }
+
+      document.getElementById("years").textContent = years;
+      document.getElementById("months").textContent = months;
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+    }
+
+    setInterval(updateLoveCounter, 1000);
+    updateLoveCounter();
+
     function startStory() {
       window.scrollTo({
         top: window.innerHeight,
@@ -537,6 +776,36 @@
         }, i * 45);
       }
     }
+
+    function revealOnScroll() {
+      const revealElements = document.querySelectorAll(".reveal");
+      const galleryImages = document.querySelectorAll(".gallery img");
+
+      revealElements.forEach((element) => {
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+        const revealPoint = 110;
+
+        if (elementTop < windowHeight - revealPoint) {
+          element.classList.add("active");
+        }
+      });
+
+      galleryImages.forEach((image, index) => {
+        const windowHeight = window.innerHeight;
+        const imageTop = image.getBoundingClientRect().top;
+        const revealPoint = 80;
+
+        if (imageTop < windowHeight - revealPoint) {
+          setTimeout(() => {
+            image.classList.add("active");
+          }, index * 75);
+        }
+      });
+    }
+
+    window.addEventListener("scroll", revealOnScroll);
+    window.addEventListener("load", revealOnScroll);
   </script>
 
 </body>
