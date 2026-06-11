@@ -1,100 +1,157 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bibble & Dizzle</title>
-  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Georgia, serif;
+      background: #fff7f2;
+      color: #4a2c2a;
+      text-align: center;
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 50px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero {
+      background: linear-gradient(rgba(80,30,40,0.45), rgba(80,30,40,0.45)),
+                  url("images/cover.jpg");
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+
+    h1 {
+      font-size: 52px;
+      margin: 10px 0;
+    }
+
+    h2 {
+      font-size: 34px;
+    }
+
+    p {
+      max-width: 680px;
+      font-size: 19px;
+      line-height: 1.8;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 30px;
+      background: #ff7aa2;
+      color: white;
+      font-size: 17px;
+      cursor: pointer;
+    }
+
+    .card {
+      background: white;
+      padding: 28px;
+      border-radius: 24px;
+      max-width: 720px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      max-width: 900px;
+      width: 100%;
+      margin-top: 25px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 18px;
+    }
+
+    .love-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      max-width: 850px;
+      width: 100%;
+      margin-top: 25px;
+    }
+
+    .love-card {
+      background: white;
+      padding: 22px;
+      border-radius: 18px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 40px; }
+      h2 { font-size: 28px; }
+      p { font-size: 17px; }
+    }
+  </style>
 </head>
 
 <body>
 
-  <audio id="ourSong" loop>
-    <source src="music/our-song.mp3" type="audio/mpeg" />
+  <audio id="song" loop>
+    <source src="music/our-song.mp3" type="audio/mpeg">
   </audio>
 
-  <section class="hero" id="home">
-    <div class="hero-overlay"></div>
+  <section class="hero">
+    <h1>Bibble & Dizzle</h1>
+    <p>Chapter One: 365 Days Together</p>
+    <button onclick="startStory()">Open Our Story ❤️</button>
+  </section>
 
-    <div class="hero-content">
-      <p class="small-title">Chapter One</p>
-      <h1>Bibble & Dizzle</h1>
-      <p class="subtitle">365 Days Together</p>
-
-      <button onclick="startStory()">Open Our Story ❤️</button>
+  <section>
+    <div class="card">
+      <h2>A Little Place For Our Memories</h2>
+      <p>
+        This is not just a website. It is a small corner of the internet
+        made for the memories, laughs, tiny moments, and love we shared
+        in our first year together.
+      </p>
     </div>
   </section>
 
-  <section class="intro">
-    <h2>A Little Place For Our Memories</h2>
-    <p>
-      This is not just a website. It is a small corner of the internet
-      made for the memories, laughs, tiny moments, and love we shared
-      in our first year together.
-    </p>
-  </section>
-
-  <section class="timeline-section">
+  <section>
     <h2>Our Timeline</h2>
-
-    <div class="timeline">
-
-      <div class="timeline-item">
-        <img src="images/photo1.jpg" alt="memory" />
-        <div>
-          <span>Day 1</span>
-          <h3>The Beginning</h3>
-          <p>Replace this with the story of how Bibble and Dizzle began.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <img src="images/photo2.jpg" alt="memory" />
-        <div>
-          <span>First Date</span>
-          <h3>Our First Little Adventure</h3>
-          <p>Write a short memory here. Keep it simple and personal.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <img src="images/photo3.jpg" alt="memory" />
-        <div>
-          <span>Favorite Moment</span>
-          <h3>The Day I Still Remember</h3>
-          <p>Add something funny, cute, or meaningful here.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <img src="images/photo4.jpg" alt="memory" />
-        <div>
-          <span>One Year Later</span>
-          <h3>Still My Favorite Person</h3>
-          <p>Thank you for making ordinary days feel special.</p>
-        </div>
-      </div>
-
+    <div class="card">
+      <p><b>The Beginning</b><br>Replace this with how Bibble and Dizzle started.</p>
+      <p><b>First Date</b><br>Write a short memory here.</p>
+      <p><b>Favorite Moment</b><br>Add something cute, funny, or meaningful.</p>
+      <p><b>One Year Later</b><br>Still my favorite person ❤️</p>
     </div>
   </section>
 
-  <section class="gallery-section">
+  <section>
     <h2>Memory Gallery</h2>
-    <p class="section-note">A few little pieces of our first year.</p>
-
     <div class="gallery">
-      <img src="images/photo5.jpg" alt="memory" />
-      <img src="images/photo6.jpg" alt="memory" />
-      <img src="images/photo7.jpg" alt="memory" />
-      <img src="images/photo8.jpg" alt="memory" />
-      <img src="images/photo9.jpg" alt="memory" />
-      <img src="images/photo10.jpg" alt="memory" />
+      <img src="images/photo1.jpg">
+      <img src="images/photo2.jpg">
+      <img src="images/photo3.jpg">
+      <img src="images/photo4.jpg">
+      <img src="images/photo5.jpg">
+      <img src="images/photo6.jpg">
     </div>
   </section>
 
-  <section class="love-section">
+  <section>
     <h2>Things I Love About You</h2>
-
     <div class="love-grid">
       <div class="love-card">Your smile</div>
       <div class="love-card">Your laugh</div>
@@ -105,34 +162,62 @@
     </div>
   </section>
 
-  <section class="letter-section">
-    <div class="letter">
+  <section>
+    <div class="card">
       <h2>Dear Dizzle,</h2>
       <p>
         One year with you has meant more to me than I can fully explain.
         Thank you for being my comfort, my happiness, and my favorite person.
       </p>
       <p>
-        I love every little version of us. The sweet moments, the silly moments,
-        the quiet days, and even the difficult ones. I am grateful that I got to
-        spend this first year with you.
-      </p>
-      <p>
         I hope this is only the beginning of many more memories together.
       </p>
-      <p class="signature">
-        Love,<br />
-        Bibble ❤️
-      </p>
+      <p>Love,<br>Bibble ❤️</p>
     </div>
   </section>
 
-  <section class="ending">
+  <section>
     <h2>Thank You For The Best First Year</h2>
     <p>Year 2 starts now.</p>
     <button onclick="showHearts()">One Last Surprise ❤️</button>
   </section>
 
-  <script src="script.js"></script>
+  <script>
+    function startStory() {
+      const song = document.getElementById("song");
+      song.play().catch(() => {});
+      window.scrollTo({
+        top: window.innerHeight,
+        behavior: "smooth"
+      });
+    }
+
+    function showHearts() {
+      for (let i = 0; i < 25; i++) {
+        const heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.style.position = "fixed";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.bottom = "-20px";
+        heart.style.fontSize = "28px";
+        heart.style.animation = "float 4s linear forwards";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 4000);
+      }
+    }
+
+    const style = document.createElement("style");
+    style.innerHTML = `
+      @keyframes float {
+        to {
+          transform: translateY(-110vh);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+
 </body>
 </html>
